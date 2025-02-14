@@ -144,30 +144,30 @@ The analysis begins by reading a merged CSV file (`pl_output/merged_data.csv`) a
 ### CPU Compute Unit Analysis
 For CPU analysis, a compute score is defined as:
 
-\\[
-\\operatorname{cpu\\_compute\\_score} = \\operatorname{vcpus} + \\frac{\\operatorname{memory\\_gib}}{4}
-\\]
+```
+cpu_compute_score = vcpus + (memory_gib / 4)
+```
 
 The hourly price is then normalized by dividing by this compute score:
 
-\\[
-\\operatorname{cpu\\_norm\\_price} = \\frac{\\operatorname{price\\_per\\_hour}}{\\operatorname{cpu\\_compute\\_score}}
-\\]
+```
+cpu_norm_price = price_per_hour / cpu_compute_score
+```
 
 Median values for the normalized CPU price are computed for each provider to allow a robust comparison across different offerings.
 
 ### GPU Compute Unit Analysis
 For GPU analysis, instances with an unknown GPU model are filtered out. A lookup table assigns a score to each GPU model based on experimental benchmarks. The total GPU compute score is calculated as:
 
-\\[
-\\operatorname{total\\_gpu\\_compute} = \\operatorname{gpu\\_score} \\times \\operatorname{gpu\\_count}
-\\]
+```
+total_gpu_compute = gpu_score * gpu_count
+```
 
 The normalized GPU price is obtained by:
 
-\\[
-\\operatorname{gpu\\_norm\\_price} = \\frac{\\operatorname{price\\_per\\_hour}}{\\operatorname{total\\_gpu\\_compute}}
-\\]
+```
+gpu_norm_price = price_per_hour / total_gpu_compute
+```
 
 Median values are then computed per provider to mitigate the impact of outliers.
 
