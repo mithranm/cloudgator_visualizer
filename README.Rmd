@@ -1,6 +1,6 @@
 
 ---
-title: "Cloud Instance Price Analysis Report"
+title: "Cloud VM Instance Price Analysis Report"
 author: "Mithran Mohanraj"
 date: "`r Sys.Date()`"
 output: github_document

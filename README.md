@@ -1,4 +1,4 @@
-Cloud Instance Price Analysis Report
+Cloud VM Instance Price Analysis Report
 ================
 Mithran Mohanraj
 2025-02-14

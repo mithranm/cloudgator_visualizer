@@ -126,7 +126,7 @@ report_file <- "README.Rmd"
 
 report_content <- '
 ---
-title: "Cloud Instance Price Analysis Report"
+title: "Cloud VM Instance Price Analysis Report"
 author: "Mithran Mohanraj"
 date: "`r Sys.Date()`"
 output: github_document
@@ -194,4 +194,4 @@ writeLines(report_content, con = report_file)
 # Render the R Markdown document to a GitHub-flavored Markdown file
 render(report_file, output_format = "github_document", clean = TRUE)
 
-cat("Analysis report generated at: REAMDE.md\n")
+cat("Analysis report generated at: README.md\n")
