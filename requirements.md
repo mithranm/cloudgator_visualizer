@@ -16,7 +16,7 @@ Chocolatey install recommended.
 - lubridate
 - rmarkdown
 
-Install in one shot with `Rscript -e "install.packages(c('ggplot2','dplyr','readr','lubridate', 'rmarkdown'), repos='http://cran.rstudio.com')"`
+Install in one shot with `Rscript -e "install.packages(c('ggplot2','dplyr','readr','lubridate', 'rmarkdown', 'dunn.test'), repos='http://cran.rstudio.com')"`
 
 ### System
 

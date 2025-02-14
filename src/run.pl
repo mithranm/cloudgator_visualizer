@@ -9,15 +9,18 @@ use Text::CSV;
 # Set paths
 my $data_dir = "raw_data";
 my $output_dir = "pl_output";
+my $r_output_dir = "r_output";
 my $output_csv = "$output_dir/merged_data.csv";
-my $r_script = "src/analyze_data.R";
-my $readme = "README.md";
 
 # Clear and recreate output directory
 if (-d $output_dir) {
     rmtree($output_dir) or die "Failed to clear $output_dir: $!";
 }
 make_path($output_dir) or die "Failed to create $output_dir: $!";
+if (-d $r_output_dir) {
+    rmtree($r_output_dir) or die "Failed to clear $r_output_dir: $!";
+}
+make_path($r_output_dir) or die "Failied to create $r_output_dir: $!";
 
 # Find all CSV files in raw_data
 my @csv_files;
@@ -66,5 +69,10 @@ print "CSV files merged successfully into $output_csv\n";
 
 # Run R script
 print "Running R analysis...\n";
-system("Rscript.exe $r_script") == 0 or die "Failed to run R script: $!";
-print "Pipeline completed successfully!\n";
+use strict;
+use warnings;
+
+my $master_script = 'scripts/main_pipeline.R';
+
+system("Rscript.exe $master_script") == 0
+  or die "Error running pipeline: $!";

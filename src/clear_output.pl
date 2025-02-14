@@ -4,7 +4,11 @@ use File::Path qw(rmtree);
 
 # Remove the 'output' directory if it exists
 if (-d 'r_output') {
-    rmtree('r_output') or die "Failed to remove 'output' directory: $!";
+    rmtree('r_output') or die "Failed to remove 'r_output' directory: $!";
+}
+
+if (-d 'pl_output') {
+    rmtree('pl_output') or die "Failed to remove 'pl_output' directory: $!";
 }
 
 # Remove README files if they exist

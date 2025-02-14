@@ -1,0 +1,42 @@
+
+---
+title: "CloudGator Unified Analysis Report"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+# Introduction
+
+This report combines outputs from several analysis scripts:
+
+1. **Basic Analysis & Plots** (from `scripts/create_analysis.R`)
+2. **Central Tendency Summaries** (from `scripts/central_tendency.R`)
+3. **Statistical Tests** (from `scripts/kruskal_dunn_normalized.R`)
+
+Below you will find the detailed outputs from each step.
+
+---
+
+## 1. Basic Analysis & Plots
+
+```{r create_analysis, echo=TRUE, message=TRUE, warning=TRUE, results="markup"}
+source("scripts/create_analysis.R")
+```
+
+---
+
+## 2. Central Tendency Summaries
+
+```{r central_tendency, echo=TRUE, message=TRUE, warning=TRUE, results="markup"}
+source("scripts/central_tendency.R")
+```
+
+---
+
+## 3. Statistical Tests (Kruskal-Wallis & Dunn)
+
+```{r statistical_tests, echo=TRUE, message=TRUE, warning=TRUE, results="markup"}
+source("scripts/kruskal_dunn_normalized.R")
+```
+
