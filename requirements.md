@@ -4,6 +4,8 @@
 - Windows 10/11
 - Strawberry Perl v5
 
+Chocolatey install recommended.
+
 ## Dependencies
 
 ### R
