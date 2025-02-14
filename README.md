@@ -52,7 +52,7 @@ source("scripts/create_analysis.R")
     ## 2 Azure                       0.00388                 0.246  3844
     ## 3 GCP                         0.00772                 0.446  4708
 
-![](C:/Users/mithr/Documents/cloudgator_visualizer/README_files/figure-gfm/create_analysis-1.png)<!-- -->
+![](README_files/figure-gfm/create_analysis-1.png)<!-- -->
 
     ## 
     ## GPU-based Aggregated Spot Price Metrics:
@@ -63,7 +63,7 @@ source("scripts/create_analysis.R")
     ## 2 Azure                        0.0635                 0.636    96
     ## 3 GCP                          0.0998                 2.17    416
 
-![](C:/Users/mithr/Documents/cloudgator_visualizer/README_files/figure-gfm/create_analysis-2.png)<!-- -->![](C:/Users/mithr/Documents/cloudgator_visualizer/README_files/figure-gfm/create_analysis-3.png)<!-- -->
+![](README_files/figure-gfm/create_analysis-2.png)<!-- -->![](README_files/figure-gfm/create_analysis-3.png)<!-- -->
 
     ## 
     ## create_analysis.R completed.
