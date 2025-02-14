@@ -654,13 +654,14 @@ explicitly cast to numeric types to ensure correct computations.</p>
 <h3 id="cpu-compute-unit-analysis">CPU Compute Unit Analysis</h3>
 <p>For CPU analysis, a compute score is defined as:</p>
 <p><span class="math display">\[
-\text{cpu\_compute\_score} = \text{vcpus} + \frac{\text{memory\_gib}}{4}
+\operatorname{cpu\_compute\_score} = \operatorname{vcpus} +
+\frac{\operatorname{memory\_gib}}{4}
 \]</span></p>
 <p>The hourly price is then normalized by dividing by this compute
 score:</p>
 <p><span class="math display">\[
-\text{cpu\_norm\_price} =
-\frac{\text{price\_per\_hour}}{\text{cpu\_compute\_score}}
+\operatorname{cpu\_norm\_price} =
+\frac{\operatorname{price\_per\_hour}}{\operatorname{cpu\_compute\_score}}
 \]</span></p>
 <p>Median values for the normalized CPU price are computed for each
 provider to allow a robust comparison across different offerings.</p>
@@ -670,12 +671,13 @@ out. A lookup table assigns a score to each GPU model based on
 experimental benchmarks. The total GPU compute score is calculated
 as:</p>
 <p><span class="math display">\[
-\text{total\_gpu\_compute} = \text{gpu\_score} \times \text{gpu\_count}
+\operatorname{total\_gpu\_compute} = \operatorname{gpu\_score} \times
+\operatorname{gpu\_count}
 \]</span></p>
 <p>The normalized GPU price is obtained by:</p>
 <p><span class="math display">\[
-\text{gpu\_norm\_price} =
-\frac{\text{price\_per\_hour}}{\text{total\_gpu\_compute}}
+\operatorname{gpu\_norm\_price} =
+\frac{\operatorname{price\_per\_hour}}{\operatorname{total\_gpu\_compute}}
 \]</span></p>
 <p>Median values are then computed per provider to mitigate the impact
 of outliers.</p>
