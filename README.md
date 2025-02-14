@@ -42,28 +42,28 @@ source("scripts/create_analysis.R")
     ##     date, intersect, setdiff, union
 
     ## Running create_analysis.R...
-    ## Rows: 18968 Columns: 13 
+    ## Rows: 23710 Columns: 13 
     ## 
     ## CPU-based Aggregated Spot Price Metrics:
     ## # A tibble: 3 × 4
     ##   provider median_cpu_spot_norm_price median_cpu_spot_price count
     ##   <chr>                         <dbl>                 <dbl> <int>
-    ## 1 AWS                         0.00909                 0.510  3384
-    ## 2 Azure                       0.00388                 0.246  3844
-    ## 3 GCP                         0.00772                 0.446  4708
+    ## 1 AWS                         0.00909                 0.511  4230
+    ## 2 Azure                       0.00388                 0.246  4805
+    ## 3 GCP                         0.00772                 0.446  5885
 
-![](README_files/figure-gfm/create_analysis-1.png)<!-- -->
+![](r_output/create_analysis-1.png)<!-- -->
 
     ## 
     ## GPU-based Aggregated Spot Price Metrics:
     ## # A tibble: 3 × 4
     ##   provider median_gpu_spot_norm_price median_gpu_spot_price count
     ##   <chr>                         <dbl>                 <dbl> <int>
-    ## 1 AWS                          0.0996                 0.981   216
-    ## 2 Azure                        0.0635                 0.636    96
-    ## 3 GCP                          0.0998                 2.17    416
+    ## 1 AWS                          0.0996                 0.981   270
+    ## 2 Azure                        0.0635                 0.636   120
+    ## 3 GCP                          0.0998                 2.17    520
 
-![](README_files/figure-gfm/create_analysis-2.png)<!-- -->![](README_files/figure-gfm/create_analysis-3.png)<!-- -->
+![](r_output/create_analysis-2.png)<!-- -->![](r_output/create_analysis-3.png)<!-- -->
 
     ## 
     ## create_analysis.R completed.
@@ -110,14 +110,14 @@ source("scripts/kruskal_dunn_normalized.R")
     ##  Kruskal-Wallis rank sum test
     ## 
     ## data:  cpu_spot_norm_price by provider
-    ## Kruskal-Wallis chi-squared = 4733.3, df = 2, p-value < 2.2e-16
+    ## Kruskal-Wallis chi-squared = 5916.3, df = 2, p-value < 2.2e-16
     ## 
     ## 
     ## Significant differences found for CPU normalized prices. Running Dunn's test...
     ##   Kruskal-Wallis rank sum test
     ## 
     ## data: x and group
-    ## Kruskal-Wallis chi-squared = 4733.0482, df = 2, p-value = 0
+    ## Kruskal-Wallis chi-squared = 5916.014, df = 2, p-value = 0
     ## 
     ## 
     ##                            Comparison of x by group                            
@@ -125,25 +125,25 @@ source("scripts/kruskal_dunn_normalized.R")
     ## Col Mean-|
     ## Row Mean |        AWS      Azure
     ## ---------+----------------------
-    ##    Azure |   66.84918
+    ##    Azure |   74.73796
     ##          |    0.0000*
     ##          |
-    ##      GCP |   22.82791  -47.32789
+    ##      GCP |   25.52247  -52.91230
     ##          |    0.0000*    0.0000*
     ## 
     ## alpha = 0.05
     ## Reject Ho if p <= alpha/2
     ## $chi2
-    ## [1] 4733.048
+    ## [1] 5916.014
     ## 
     ## $Z
-    ## [1]  66.84918  22.82792 -47.32789
+    ## [1]  74.73797  25.52248 -52.91231
     ## 
     ## $P
-    ## [1]  0.000000e+00 1.211166e-115  0.000000e+00
+    ## [1]  0.000000e+00 5.550299e-144  0.000000e+00
     ## 
     ## $P.adjusted
-    ## [1]  0.000000e+00 3.633497e-115  0.000000e+00
+    ## [1]  0.00000e+00 1.66509e-143  0.00000e+00
     ## 
     ## $comparisons
     ## [1] "AWS - Azure" "AWS - GCP"   "Azure - GCP"
@@ -154,14 +154,14 @@ source("scripts/kruskal_dunn_normalized.R")
     ##  Kruskal-Wallis rank sum test
     ## 
     ## data:  gpu_spot_norm_price by provider
-    ## Kruskal-Wallis chi-squared = 54.144, df = 2, p-value = 1.749e-12
+    ## Kruskal-Wallis chi-squared = 67.736, df = 2, p-value = 1.956e-15
     ## 
     ## 
     ## Significant differences found for GPU normalized prices. Running Dunn's test...
     ##   Kruskal-Wallis rank sum test
     ## 
     ## data: x and group
-    ## Kruskal-Wallis chi-squared = 54.1414, df = 2, p-value = 0
+    ## Kruskal-Wallis chi-squared = 67.7331, df = 2, p-value = 0
     ## 
     ## 
     ##                            Comparison of x by group                            
@@ -169,25 +169,25 @@ source("scripts/kruskal_dunn_normalized.R")
     ## Col Mean-|
     ## Row Mean |        AWS      Azure
     ## ---------+----------------------
-    ##    Azure |   5.559008
+    ##    Azure |   6.227247
     ##          |    0.0000*
     ##          |
-    ##      GCP |  -1.398047  -7.321435
-    ##          |     0.2431    0.0000*
+    ##      GCP |  -1.549462  -8.187561
+    ##          |     0.1819    0.0000*
     ## 
     ## alpha = 0.05
     ## Reject Ho if p <= alpha/2
     ## $chi2
-    ## [1] 54.14141
+    ## [1] 67.73312
     ## 
     ## $Z
-    ## [1]  5.559009 -1.398047 -7.321436
+    ## [1]  6.227248 -1.549462 -8.187562
     ## 
     ## $P
-    ## [1] 1.356554e-08 8.104947e-02 1.226661e-13
+    ## [1] 2.373503e-10 6.063531e-02 1.332859e-16
     ## 
     ## $P.adjusted
-    ## [1] 4.069662e-08 2.431484e-01 3.679983e-13
+    ## [1] 7.120508e-10 1.819059e-01 3.998578e-16
     ## 
     ## $comparisons
     ## [1] "AWS - Azure" "AWS - GCP"   "Azure - GCP"

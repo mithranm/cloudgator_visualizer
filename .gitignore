@@ -34,10 +34,6 @@ inc/
 /pm_to_blib
 /*.zip
 
-# Project Files
-r_output/*
-!r_output/.gitkeep
-
 # Mithran
 o.md
 .dirfilter

@@ -1,4 +1,4 @@
-# create_analysis.R
+# scripts/create_analysis.R
 # --------------------------------
 # Purpose: Data preparation, summary statistics, CPU/GPU normalization,
 # plotting, and printing outputs inline.
@@ -49,15 +49,21 @@ print(cpu_spot_summary)
 p_cpu_spot <- ggplot(cpu_spot_summary,
                      aes(x = provider, y = median_cpu_spot_norm_price, fill = provider)) +
   geom_bar(stat = "identity") +
-  labs(title = "Median $ per CPU Compute Unit (Spot Price) by Provider",
-       x = "Provider",
-       y = "Normalized Spot Price ($ per CPU compute unit)") +
+  labs(
+    title = "Median $ per CPU Compute Unit (Spot Price) by Provider",
+    x = "Provider",
+    y = "Normalized Spot Price ($ per CPU compute unit)"
+  ) +
   theme_minimal()
 print(p_cpu_spot)
-ggsave("r_output/cpu_spot_norm_price_by_provider.png", p_cpu_spot, width = 8, height = 6)
+
+# Save CPU plot
+ggsave("r_output/create-analysis-1.png", p_cpu_spot, width = 8, height = 6)
 
 # GPU analysis
-df_gpu <- df_spot %>% filter(!(gpu_model %in% c("Unknown")) & !is.na(gpu_model))
+df_gpu <- df_spot %>%
+  filter(!(gpu_model %in% c("Unknown")) & !is.na(gpu_model))
+
 gpu_scores <- c(
   "A10" = 6, "A100" = 10, "A100-80GB" = 10, "A10G" = 8,
   "Gaudi HL-205" = 7, "H100" = 12, "H100-MEGA" = 13, "K80" = 3,
@@ -91,12 +97,16 @@ print(gpu_spot_summary)
 p_gpu_spot <- ggplot(gpu_spot_summary,
                      aes(x = provider, y = median_gpu_spot_norm_price, fill = provider)) +
   geom_bar(stat = "identity") +
-  labs(title = "Median $ per GPU Compute Unit (Spot Price) by Provider",
-       x = "Provider",
-       y = "Normalized Spot Price ($ per GPU compute unit)") +
+  labs(
+    title = "Median $ per GPU Compute Unit (Spot Price) by Provider",
+    x = "Provider",
+    y = "Normalized Spot Price ($ per GPU compute unit)"
+  ) +
   theme_minimal()
 print(p_gpu_spot)
-ggsave("r_output/gpu_spot_norm_price_by_provider.png", p_gpu_spot, width = 8, height = 6)
+
+# Save GPU plot
+ggsave("r_output/create_analysis-2.png", p_gpu_spot, width = 8, height = 6)
 
 # Optional: Plot spot price over time if timestamp is available
 if ("timestamp" %in% names(df_spot)) {
@@ -104,17 +114,25 @@ if ("timestamp" %in% names(df_spot)) {
     group_by(provider, timestamp) %>%
     summarize(median_spot_price = median(spot_price_per_hour, na.rm = TRUE),
               .groups = "drop")
+
+  # Adjust the plot to clearly show each timestamp
   p_time_spot <- ggplot(time_series_spot,
                         aes(x = timestamp, y = median_spot_price)) +
     geom_line(color = "steelblue") +
-    geom_point(color = "steelblue") +
+    geom_point(color = "red", size = 3) +  # Larger red points
     facet_wrap(~ provider, scales = "free_y") +
-    labs(title = "Spot Price Changes Over Time (Faceted by Provider)",
-         x = "Timestamp",
-         y = "Median Spot Price per Hour") +
+    scale_x_datetime(date_breaks = "12 hours", date_labels = "%b-%d %H:%M") +
+    labs(
+      title = "Spot Price Changes Over Time (Faceted by Provider)",
+      x = "Timestamp",
+      y = "Median Spot Price per Hour"
+    ) +
     theme_minimal()
+
   print(p_time_spot)
-  ggsave("r_output/spot_price_changes_line_graph.png", p_time_spot, width = 10, height = 6)
+
+  # Save timeseries plot
+  ggsave("r_output/create_analysis-3.png", p_time_spot, width = 10, height = 6)
 }
 
 cat("\ncreate_analysis.R completed.\n")

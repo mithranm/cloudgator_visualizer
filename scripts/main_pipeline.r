@@ -1,10 +1,5 @@
-# main_pipeline.R
+# scripts/main_pipeline.R
 # ------------------------------------------------------------
-# This script generates a unified final report that includes outputs
-# from create_analysis.R, central_tendency.R, and kruskal_dunn_normalized.R.
-# The final report is rendered as README.md in the project root.
-# The intermediate R Markdown file is created in a temporary folder.
-
 library(rmarkdown)
 cat("=== Starting unified pipeline ===\n")
 
@@ -12,10 +7,6 @@ cat("=== Starting unified pipeline ===\n")
 temp_rmd <- file.path(tempdir(), "final_pipeline.Rmd")
 
 # Build the content of the final report.
-# Note that we have removed the 'self_contained: false' option
-# to avoid errors in older rmarkdown versions.
-# Instead, we rely on chunk options to ensure relative figure paths.
-
 report_content <- '
 ---
 title: "CloudGator Unified Analysis Report"
@@ -29,10 +20,11 @@ output: github_document
 # Also specify that figures should be stored in a relative path.
 knitr::opts_knit$set(root.dir = getwd())
 knitr::opts_chunk$set(
-  fig.path   = "README_files/figure-gfm/",
+  fig.path   = "r_output/",
   echo       = TRUE,
   message    = TRUE,
-  warning    = TRUE
+  warning    = TRUE,
+  cache      = FALSE      # <--- turn off caching
 )
 ```
 
@@ -80,10 +72,10 @@ cat("Created intermediate Rmd file at:", temp_rmd, "\n")
 # Render the report to project root as README.md,
 # setting knit_root_dir = getwd() for consistent relative paths.
 render(
-  input          = temp_rmd, 
-  output_file    = "README.md", 
+  input          = temp_rmd,
+  output_file    = "README.md",
   output_dir     = getwd(),      # Render to project root
-  output_format  = "github_document", 
+  output_format  = "github_document",
   clean          = TRUE,
   knit_root_dir  = getwd()
 )
